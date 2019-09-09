@@ -6,7 +6,7 @@ def request_header_info
   headers.each do |k, v|
     s += "<dt>#{k}</dt><dd>#{v}</dd>\n"
   end
-  "<dl>#{s}</dl>"
+  "<h2>Request headers</h2><dl>#{s}</dl>"
 end
 
 def env_info
@@ -14,7 +14,7 @@ def env_info
   ENV.each do |k, v|
     s += "<dt>#{k}</dt><dd>#{v}</dd>\n"
   end
-  "<dl>#{s}</dl>"
+  "<h2>Env</h2><dl>#{s}</dl>"
 end
 
 get "/" do
