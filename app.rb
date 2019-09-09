@@ -1,5 +1,9 @@
 require "sinatra"
 
+def head
+  "<head><style>body{font-family: -apple-system, sans-serif;}</style></head>"
+end
+
 def request_header_info
   s = ''
   headers = request.env #.select { |k, v| k.start_with?('HTTP_') }
@@ -18,7 +22,7 @@ def env_info
 end
 
 get "/" do
-  "Top page." + request_header_info + env_info
+  head + "<body><h1>Top</h1>" + request_header_info + env_info
 end
 
 get "/redirect" do
@@ -26,6 +30,6 @@ get "/redirect" do
 end
 
 get "/foo" do
-  "Page foo." + request_header_info + env_info
+  head + "<body><h1>foo</h1>" + request_header_info + env_info
 end
 
