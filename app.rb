@@ -2,15 +2,23 @@ require "sinatra"
 
 def request_header_info
   s = ''
-  headers = request.env.select { |k, v| k.start_with?('HTTP_') }
+  headers = request.env #.select { |k, v| k.start_with?('HTTP_') }
   headers.each do |k, v|
     s += "<dt>#{k}</dt><dd>#{v}</dd>\n"
   end
   "<dl>#{s}</dl>"
 end
 
+def env_info
+  s = ''
+  ENV.each do |k, v|
+    s += "<dt>#{k}</dt><dd>#{v}</dd>\n"
+  end
+  "<dl>#{s}</dl>"
+end
+
 get "/" do
-  "Top page." + request_header_info
+  "Top page." + request_header_info + env_info
 end
 
 get "/redirect" do
@@ -18,6 +26,6 @@ get "/redirect" do
 end
 
 get "/foo" do
-  "Page foo." + request_header_info
+  "Page foo." + request_header_info + env_info
 end
 
