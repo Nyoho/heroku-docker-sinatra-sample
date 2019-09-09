@@ -1,0 +1,25 @@
+#+title: A sample of environment variables on Docker
+
+* Development
+#+begin_src sh
+heroku create # <heroku-app-name> will be shown.
+heroku stack:set container -a <heroku-app-name>
+heroku git:remote -a <heroku-app-name>
+#+end_src
+
+Set an environment variable:
+
+: heroku config:set KEY='value'
+
+Check on the web https://<heroku-app-name>.herokuapp.com] to find =KEY= and =value=.
+
+* Docker
+Build
+#+begin_src sh
+docker build -t someone/heroku-docker-sinatra-sample .
+#+end_src
+
+Run
+#+begin_src sh
+docker run -d -e PORT=4567 -p 4567:4567 -t someone/heroku-docker-sinatra-sample
+#+end_src
